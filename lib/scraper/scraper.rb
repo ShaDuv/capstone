@@ -2,6 +2,7 @@
 require 'nokogiri'
 require 'json'
 require 'mechanize'
+require 'dotenv'
 
 class Agent
   def initialize
@@ -12,8 +13,8 @@ class Agent
   # log in to site
   # creates a log in
   def login
-    userid =
-    password = 
+    userid = username
+    password = password
     login_page = @agent.get 'https://fetlife.com/users/sign_in'
     # log in passing in username and pasword
     form = login_page.forms[0]
