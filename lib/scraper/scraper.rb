@@ -12,7 +12,8 @@ class Agent
   # log in to site
   # creates a log in
   def login
-    # username and password goes here
+    userid =
+    password = 
     login_page = @agent.get 'https://fetlife.com/users/sign_in'
     # log in passing in username and pasword
     form = login_page.forms[0]
