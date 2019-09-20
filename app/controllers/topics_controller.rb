@@ -1,16 +1,24 @@
+require 'scraper'
 class TopicsController < ApplicationController
-# require_relative ('../../lib/scraper')
+  protect_from_forgery with: :reset_session
   def index
-    # @topics = Topic.all
+
     render :index
+
   end
 
   def show
-    # @topic = Topic.find(params[:topic])
+    @topic = Topic.find(params[:site_id])
   end
 
   def create
-    # @topic_name = params[:topic]
+    agent = ScraperAgent.new()
+    agent.login
+    term = params[:term]
+    topic_id = agent.search_for_id(term)
+    @topic = Topic.new(:name => term, :site_id => topic_id)
+    @topic.save
+    render :show
     # @agent = Agent.new
     # @agent.login
     # @id = agent.search_for_id(topic_name)

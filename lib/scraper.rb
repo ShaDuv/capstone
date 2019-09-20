@@ -4,7 +4,7 @@ require 'json'
 require 'mechanize'
 require 'dotenv'
 
-class Agent
+class ScraperAgent
   def initialize
     @agent = Mechanize.new
     @agent.history_added = Proc.new {sleep 0.5}
@@ -13,8 +13,9 @@ class Agent
   # log in to site
   # creates a log in
   def login
-    userid = username
-    password = password
+    Dotenv.load
+    userid = ENV['username']
+    password = ENV['password']
     login_page = @agent.get 'https://fetlife.com/users/sign_in'
     # log in passing in username and pasword
     form = login_page.forms[0]
