@@ -1,4 +1,5 @@
 class Topic < ApplicationRecord
   has_many :datas
-  # id = agent.search_for_id(params[:term])
+  def find_by_name()
+  end
 end

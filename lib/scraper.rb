@@ -33,7 +33,7 @@ class ScraperAgent
     form.field_with(id: 'q').value = search_term
 
     results = form.submit
-    {:id => results.uri.to_s.split("/")[-1], :topic => search_term }
+    {:site_id => results.uri.to_s.split("/")[-1], :name => search_term }
   end
 # collects total results of all pages of profile interested in topic
   def topic_profiles(id)

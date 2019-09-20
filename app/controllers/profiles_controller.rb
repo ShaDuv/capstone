@@ -1,6 +1,4 @@
-require '../lib/scraper/scraper.rb'
-
-class ApplicationController < ApplicationController
+class ProfilesController < ApplicationController
 
   def search
     # this shouold be somewhere else but it[s okay for now]

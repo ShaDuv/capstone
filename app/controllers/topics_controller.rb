@@ -12,22 +12,19 @@ class TopicsController < ApplicationController
   end
 
   def create
-    agent = ScraperAgent.new()
-    agent.login
     term = params[:term]
-    topic_id = agent.search_for_id(term)
-    @topic = Topic.new(:name => term, :site_id => topic_id)
-    @topic.save
+    @topic = Topic.find_by_name(term)
+    unless @topic
+      agent = ScraperAgent.new()
+      agent.login
+      topic_data = agent.search_for_id(term)
+      @topic = Topic.create(topic_data)
+    end
     render :show
-    # @agent = Agent.new
-    # @agent.login
-    # @id = agent.search_for_id(topic_name)
-    #
-    # @topic = Topic.new(site_id: id, name: topic_name)
   end
   private
     def topic_params
-      params.require(:topic).permit(:name)
+      params.require(:id).permit(:name)
     end
 
 

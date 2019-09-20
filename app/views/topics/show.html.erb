@@ -1,0 +1,8 @@
+<h1>Topic: <%= @topic.name %></h1>
+
+<p><%= link_to "Search", profiles_path(@topic.id) %></p>
+<p><%= link_to "Delete", topics_path(@topic.id),
+                         :data => {:confirm => "Are you sure?",
+                                   :method => "delete"} %></p>
+
+<p><%= link_to "Return to search", topics_path %></p>
