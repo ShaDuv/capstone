@@ -36,12 +36,15 @@ class ScraperAgent
     {:site_id => results.uri.to_s.split("/")[-1], :name => search_term }
   end
 # collects total results of all pages of profile interested in topic
-  def topic_profiles(id)
+  def topic_profiles(id, max = 5)
     topic_results = []
     page = 1
     loop do
       profiles_page = @agent.get "https://fetlife.com/fetishes/#{id}/kinksters?page=#{page}"
       data = parse_profiles(profiles_page)
+      if page > max
+        break
+      end
       if data.empty?
         break
       end

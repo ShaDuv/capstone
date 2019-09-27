@@ -1,13 +1,24 @@
 class ProfilesController < ApplicationController
 
-    def create
-      id = params[:id]
-      @profiles = Profiles.find_by_id(id)
+    def new
+      id = params[:site_id]
+      @profiles = Profile.find_by_id(id)
       unless @profiles
         agent = ScraperAgent.new()
         agent.login
-        profile_data = agent.topic_profiles(id)
-        @profile = Profile.create(profile_data)
+        @profiles = agent.topic_profiles(id)
+        @profiles.each do |user|
+          Profile.create(:user_site_id => user.userid,
+                         :topic_id => id,
+                         :role => user.roll,
+                         :age=> user.age,
+                         :sex=> user.sex,
+                         :minor_location=> user.minor_location,
+                         :major_location=> user.major_location,
+                         :action=> user.action
+
+          )
+        end
       end
       render :show
     end

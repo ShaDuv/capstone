@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 2019_08_22_230348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "data", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
+    t.string "user_site_id"
     t.integer "age"
     t.string "gender"
     t.string "minor_location"
     t.string "major_location"
     t.string "role"
     t.string "action"
-    t.string "user_site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "topic_id"
@@ -35,5 +35,5 @@ ActiveRecord::Schema.define(version: 2019_08_22_230348) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "data", "topics"
+  add_foreign_key "profiles", "topics"
 end
