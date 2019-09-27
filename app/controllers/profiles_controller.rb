@@ -1,34 +1,30 @@
 class ProfilesController < ApplicationController
-    def show
-      @topic = Topic.find(params[:id])
-      filter = params[:filter]
-      @profiles = Profile.where(where_filter(filter)).count
-    end
-    
-    def new
+    def index
       @topic = Topic.find(params[:topic_id])
       filter = params[:filter]
-      @profiles = Profile.where(where_filter(filter)).count
-      unless @profiles
+      @profiles = @topic.profiles.where(interest_filter(filter)).count
+    end
+
+    def new
+      @topic = Topic.find(params[:topic_id])
+
+      if @topic.profiles.empty?
         agent = ScraperAgent.new()
         agent.login
-        profiles = agent.topic_profiles(@topic_id)
+        profiles = agent.topic_profiles(@topic.id)
         profiles.each do |user|
         logger.debug user
-        Profile.create!(:user_site_id => user[:userid],
-                         :topic_id => @topic_id,
+        @topic.profiles.create!(:user_site_id => user[:userid],
                          :role => user[:role],
-                         :age=> user[:age],
-                         :gender=> user[:sex],
-                         :minor_location=> user[:minor_location],
-                         :major_location=> user[:major_location],
-                         :action=> user[:action]
-
+                         :age => user[:age],
+                         :gender => user[:sex],
+                         :minor_location => user[:minor_location],
+                         :major_location => user[:major_location],
+                         :action => user[:action]
           )
         end
-        @profiles = Profile.where(topic_id: @topic_id, action: "is into receiving").all.count
       end
-      redirect_to :action => 'show', id: @topic.id
+      redirect_to :action => 'index', topic_id: @topic.id
     end
   def search
     # this shouold be somewhere else but it[s okay for now]
@@ -41,7 +37,7 @@ class ProfilesController < ApplicationController
     # json_response profiles
   end
   private
-  def where_filter(filter)
+  def interest_filter(filter)
     case filter
     when "Receiving"
       "action = 'is into receiving'"

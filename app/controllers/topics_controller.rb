@@ -22,6 +22,7 @@ class TopicsController < ApplicationController
     end
     redirect_to :action => 'show', id: @topic.site_id
   end
+  
   private
     def topic_params
       params.require(:id).permit(:name)

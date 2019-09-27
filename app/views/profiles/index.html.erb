@@ -1,0 +1,6 @@
+<h1> PROFILE SHOW PAGE </h1>
+
+<p><%= link_to "Receiving", topic_profiles_path(@topic, :filter => 'Receiving') %></p>
+<p><%= link_to "Interested", topic_profiles_path(@topic, :filter => 'Interested') %></p>
+<p><%= link_to "Everyonthin", topic_profiles_path(@topic) %></p>
+<%= @profiles %>
