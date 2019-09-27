@@ -8,21 +8,16 @@
 
   <body>
     <header class="navbar  navbar-inverse">
-    <div class="navbar-class">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">HOME</a></li>
-          <li><%=link_to "Previous Search", our_services_path %></li>
-          <li><%=link_to "Contact", rates_path %></li>
+          <li class="active"><a href="#index">HOME</a></li>
+          <li><%=link_to "Previous Search", topics_path %></li>
+          <li><%=link_to "Contact", topics_path %></li>
         </ul>
       </div>
-    </div>
+    </nav>
   </header>
-<%= yield %>
     <%= yield %>
   </body>
 </html>
