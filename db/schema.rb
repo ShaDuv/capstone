@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_08_22_230348) do
   enable_extension "plpgsql"
 
   create_table "profiles", force: :cascade do |t|
-    t.string "user_site_id"
+    t.integer "user_site_id"
     t.integer "age"
     t.string "gender"
     t.string "minor_location"
@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(version: 2019_08_22_230348) do
     t.integer "topic_id"
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "topics", primary_key: "site_id", force: :cascade do |t|
     t.string "name"
-    t.integer "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "profiles", "topics"
+  add_foreign_key "profiles", "topics", primary_key: "site_id"
 end

@@ -6,19 +6,21 @@ class ProfilesController < ApplicationController
       unless @profiles
         agent = ScraperAgent.new()
         agent.login
-        @profiles = agent.topic_profiles(id)
-        @profiles.each do |user|
-          Profile.create(:user_site_id => user.userid,
+        profiles = agent.topic_profiles(id)
+        profiles.each do |user|
+        logger.debug user
+        Profile.create!(:user_site_id => user[:userid],
                          :topic_id => id,
-                         :role => user.roll,
-                         :age=> user.age,
-                         :sex=> user.sex,
-                         :minor_location=> user.minor_location,
-                         :major_location=> user.major_location,
-                         :action=> user.action
+                         :role => user[:role],
+                         :age=> user[:age],
+                         :gender=> user[:sex],
+                         :minor_location=> user[:minor_location],
+                         :major_location=> user[:major_location],
+                         :action=> user[:action]
 
           )
         end
+        @profiles = Profile.where(topic_id: id).all
       end
       render :show
     end
