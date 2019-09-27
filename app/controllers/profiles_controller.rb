@@ -1,16 +1,22 @@
 class ProfilesController < ApplicationController
-
+    def show
+      @topic = Topic.find(params[:id])
+      filter = params[:filter]
+      @profiles = Profile.where(where_filter(filter)).count
+    end
+    
     def new
-      id = params[:site_id]
-      @profiles = Profile.find_by_id(id)
+      @topic = Topic.find(params[:topic_id])
+      filter = params[:filter]
+      @profiles = Profile.where(where_filter(filter)).count
       unless @profiles
         agent = ScraperAgent.new()
         agent.login
-        profiles = agent.topic_profiles(id)
+        profiles = agent.topic_profiles(@topic_id)
         profiles.each do |user|
         logger.debug user
         Profile.create!(:user_site_id => user[:userid],
-                         :topic_id => id,
+                         :topic_id => @topic_id,
                          :role => user[:role],
                          :age=> user[:age],
                          :gender=> user[:sex],
@@ -20,9 +26,9 @@ class ProfilesController < ApplicationController
 
           )
         end
-        @profiles = Profile.where(topic_id: id).all
+        @profiles = Profile.where(topic_id: @topic_id, action: "is into receiving").all.count
       end
-      render :show
+      redirect_to :action => 'show', id: @topic.id
     end
   def search
     # this shouold be somewhere else but it[s okay for now]
@@ -33,5 +39,16 @@ class ProfilesController < ApplicationController
     # # get all the profiles for a topic
     # profiles = agent.topic_profiles(id[:id])
     # json_response profiles
+  end
+  private
+  def where_filter(filter)
+    case filter
+    when "Receiving"
+      "action = 'is into receiving'"
+    when "Interested"
+      "action = 'is into receiving' or action = 'interested in'"
+    else
+      "action = 'is into receiving' or action = 'interested in' or action = 'is into everything to do with it'"
+    end
   end
 end

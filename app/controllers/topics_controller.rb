@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:site_id])
+    @topic = Topic.find(params[:id])
   end
 
   def create
@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
       topic_data = agent.search_for_id(term)
       @topic = Topic.create(topic_data)
     end
-    render :show
+    redirect_to :action => 'show', id: @topic.site_id
   end
   private
     def topic_params
