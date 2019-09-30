@@ -1,0 +1,18 @@
+2019-09-29T17:04:57-07:00 | a60fe2f169b21d0555abf565a77e13b5d28ac210 | reseach how I want the front end to look
+2019-09-27T15:46:55-07:00 | 68aef676d47d3b7b0b2d36b7bcee79d2a56a002b | builds out a template as rto how I want the final to look so that I have a blue print"
+2019-09-27T14:48:56-07:00 | c30c089362c49c8bada6dc4095f2fb96cf2f7017 | working on how to style the nav bar and looking at models
+2019-09-27T13:30:18-07:00 | 557390942edd12acf1e59aeeeb6ca0b93c5c6136 | starts navbar
+2019-09-27T12:39:20-07:00 | 436588bfb5045bb42ef1b9373ea411e8ed9f37c3 | adds filters to sort by action item
+2019-09-27T11:17:11-07:00 | f09c84a87cdc03ae3f11e17cdb3342fbaea4a3e6 | added nesting routes for profiles under topics
+2019-09-27T10:09:25-07:00 | 028ee82fba6e60fa043fe5ffec71a617cc5dbc56 | populates profile database with user data
+2019-09-27T09:05:19-07:00 | 0a12ec2e0e3d8ae5f8eddd6b1bc68379a06f0d75 | working on getting the profile data into the database
+2019-09-27T08:25:09-07:00 | 796ce4fa9a3fa8fb19463d462bea29bad5841be8 | start on profile controler
+2019-09-20T16:51:34-07:00 | daab01453e810f4da5ce5f10c2b7341202f11f1c | places start of if statement"
+2019-09-20T14:30:48-07:00 | 19ef283e8b6f08ae6e579f866930aadb01e34c42 | struggled with rails being set up as api and then trying to render. Had to remove base
+2019-09-20T13:40:50-07:00 | b1d495cdbe6aa8b522d4389106f78c0e6bfa5188 | research how to manage a search that will search two different ways
+2019-09-20T12:15:08-07:00 | 0d0a8a0c9149464f810d1efdd1a96e8657e29c2e | populates table with search term
+2019-09-20T11:12:05-07:00 | fab88fa822dba48b6ce3f80c4cad7cf019191c91 | completes search function
+2019-09-20T10:38:39-07:00 | 4b88562046b0cb668330e11fa228ccbfa673af21 | converts the render to html instead of api and makes an initial search page
+2019-09-20T09:30:50-07:00 | c7313604235867c9641721d29a2d60f8db3cb91b | start controler for search function
+2019-09-20T08:55:31-07:00 | 42b0217f273b658bcd311415a28f8374b1554b48 | add foreign key to data
+2019-09-20T08:24:16-07:00 | da0ef5e887fde8f2f404b1f785449fda519c717c | rails generated / topic modle made / scraper poro made

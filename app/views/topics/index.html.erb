@@ -1,6 +1,4 @@
-<h1>HELLO<h1>
-  <%= form_tag(topics_path, method: :post) do %>
-    <%= text_field_tag :term, params[:term] %>
-    <%= submit_tag 'Search' %>
-
+  <%= form_tag(topics_path, method: :post, class: "form-control mr-sm-2 searchbox") do %>
+  <%= text_field_tag :term, params[:term], class:"form-control mr-sm-2 " %>
+  <%= submit_tag 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
   <% end %>
