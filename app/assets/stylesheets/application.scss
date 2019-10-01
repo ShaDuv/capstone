@@ -1,0 +1,55 @@
+@import "materialize/components/color-variables";
+$primary-color: color("grey", "lighten-2") !default;
+$secondary-color: color("yellow", "base") !default;
+@import 'materialize';
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+.banner {
+color:#2B8EAC;
+background: url(couple.jpg) no-repeat center left;
+background-size: cover;
+background-position: center;
+opacity: 20%;
+height: 50vh;
+font-family: "Century Gothic";
+
+}
+
+
+img {
+  width: 50px;
+
+}
+
+nav ul li a{
+  color: #00375f;
+}
+
+.brand-logo {
+    padding-left: 12px !important;
+    padding-top: 6px !important;
+}
+
+
+  .waves-effect.waves-blue .waves-ripple {
+   /* The alpha value allows the text and background color
+   of the button to still show through. */
+    background-color: rgba(0, 55, 95, 0.65);
+  }
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
