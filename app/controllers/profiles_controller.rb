@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
     def index
+      @gender = Gender.all.map{ |g| [ g.abv, g.name ] }
       @topic = Topic.find(params[:topic_id])
       filter = params[:filter]
       @profiles = @topic.profiles.where(interest_filter(filter)).count
@@ -14,10 +15,11 @@ class ProfilesController < ApplicationController
         profiles = agent.topic_profiles(@topic.id)
         profiles.each do |user|
         logger.debug user
+        @gender = Gender.find_by_name(user[:gender])
         @topic.profiles.create!(:user_site_id => user[:userid],
                          :role => user[:role],
                          :age => user[:age],
-                         :gender => user[:sex],
+                         :gender => @gender,
                          :minor_location => user[:minor_location],
                          :major_location => user[:major_location],
                          :action => user[:action]
@@ -37,6 +39,9 @@ class ProfilesController < ApplicationController
     # json_response profiles
   end
   private
+  def group_by_gender
+  end
+
   def interest_filter(filter)
     case filter
     when "Receiving"

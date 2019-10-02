@@ -14,4 +14,12 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require materialize
+//= require 'jquery'
+//= require chartkick
+//= require Chart.bundle
+// updated 2019
+$(document).ready(function() {
+    $('.icon').click(function(){
+        $('.search').toggleClass('active')
+    });
+});

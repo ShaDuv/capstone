@@ -12,22 +12,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <body>
-    <header>
-    <nav>
-    <div class="nav-wrapper">
-      <div class="brand-logo">
-      <%= link_to 'topics#index' do %>
-      <%= image_tag "Heart" %>
-      <% end %>
-      </div>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Item one</a></li>
-        <li><a href="badges.html">Item two</a></li>
-        <li><a href="collapsible.html">Item Three</a></li>
-      </ul>
-    </div>
-  </nav>
-    </header>
     <div class="yield">
     <%= yield %>
     </div>

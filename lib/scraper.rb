@@ -66,7 +66,7 @@ class ScraperAgent
 
   def parse_profile_details(profile)
     details = {}
-    details[:userid] = profile.search('a.fl-member-card__user').first.attributes['href'].value.split('/')[-1]
+    details[:user_site_id] = profile.search('a.fl-member-card__user').first.attributes['href'].value.split('/')[-1]
     info_data = profile.search('span.fl-member-card__info').first.text.split
     details[:role] = info_data[1]
 
@@ -75,7 +75,7 @@ class ScraperAgent
     #stores the first position in the array as age
     details[:age] = age_sex[0]
     #stores the second postion in the array as the sex
-    details[:sex] = age_sex[1]
+    details[:gender] = age_sex[1]
     #pushes the results as an object into
 
     location_data = profile.search('span.fl-member-card__location').first.text.split(',')

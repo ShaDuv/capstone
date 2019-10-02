@@ -1,21 +1,17 @@
+<div class="intro">
+  <h1> Gender Difference Inside of Fetish Topics </h1>
 
-<div class="banner">
-</div>
-<div class="container">
-  <h4> This is some sample text to tell the user what they need to enter here and what they are expecting to see when they get their results"
-
-  <div class="row searcbox">
-    <form class="col s12">
-      <div class="row">
-        <div class="input-field col s8">
-          <div><%= form_tag(topics_path, method: :post, class: "") do %>
-          <%= text_field_tag :term, params[:term], class:"" %>
-          <%= submit_tag 'Search', class: "waves-effect waves-light btn"  %>
-          <% end %>
-          </div>
-        </div>
-      </div>
-    </form>
+  <p>Search for the name of a fetish using the search icon in the upper right corner.
+    Then click on the "Get Data" to view the comparison of numbers amoung the various genders that declair an interest in that fetish. </p>
   </div>
 
-</div>
+  <div class="search">
+    <div class="icon"></div>
+    <div class="form">
+      <%= form_tag(topics_path, method: :post) do %>
+      <%= text_field_tag :term, params[:term], class:"input", id:"search-input" %>
+      <%= submit_tag 'Search', class: "search-btn", id:"search-btn" %>
+      <% end %>
+    </div>
+
+  </div>
