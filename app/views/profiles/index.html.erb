@@ -1,9 +1,7 @@
-<h1> PROFILE SHOW PAGE </h1>
-Key:
-
-
-
-<%= column_chart @topic.genders.group(:name).count %>
+<h3> People interested in <%= @topic.name %> grouped by gender. </h3>
+<div class="chart"
+<%= column_chart @topic.genders.group(:name).count%>
+</div>
 
 <p><%= link_to "Receiving", topic_profiles_path(@topic, :filter => 'Receiving') %></p>
 <p><%= link_to "Interested", topic_profiles_path(@topic, :filter => 'Interested') %></p>

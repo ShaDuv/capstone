@@ -19,7 +19,13 @@
 //= require Chart.bundle
 // updated 2019
 $(document).ready(function() {
-    $('.icon').click(function(){
-        $('.search').toggleClass('active')
-    });
+  $('.icon').click(function() {
+    $('.search').toggleClass('active');
+  });
+});
+
+$('.txt').html(function(i, html) {
+  var chars = $.trim(html).split('');
+
+  return '<span>' + chars.join('</span><span>') + '</span>';
 });

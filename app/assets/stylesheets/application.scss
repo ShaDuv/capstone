@@ -71,3 +71,46 @@ body{
     width: 80vw;
     height: 100vh;
 }
+
+
+body {
+  background-color: #1a1a1a;
+  color: #fefefe;
+  font-family: 'Ubuntu';
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1.3em;
+  line-height: 2;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+  text-align: center;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.txt {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  // position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-align: right;
+  color: #eee;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.chart {
+  background-color: #e1e1e1;
+  padding: 20px;
+}
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:300);
