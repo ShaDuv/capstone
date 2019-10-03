@@ -3,7 +3,6 @@ class CreateGenders < ActiveRecord::Migration[5.2]
     create_table :genders do |t|
         t.string :name
         t.string :abv
-        t.belongs_to :profiles, foreign_key: true
         t.timestamps
     end
   end

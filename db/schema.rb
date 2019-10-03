@@ -18,10 +18,8 @@ ActiveRecord::Schema.define(version: 2019_10_02_191806) do
   create_table "genders", force: :cascade do |t|
     t.string "name"
     t.string "abv"
-    t.bigint "profiles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profiles_id"], name: "index_genders_on_profiles_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -43,6 +41,5 @@ ActiveRecord::Schema.define(version: 2019_10_02_191806) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "genders", "profiles", column: "profiles_id"
   add_foreign_key "profiles", "topics", primary_key: "site_id"
 end

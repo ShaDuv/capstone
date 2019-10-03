@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
     def index
-      @gender = Gender.all.map{ |g| [ g.abv, g.name ] }
+      @gender = Gender.all
       @topic = Topic.find(params[:topic_id])
       filter = params[:filter]
       @profiles = @topic.profiles.where(interest_filter(filter)).count
@@ -10,13 +10,14 @@ class ProfilesController < ApplicationController
       @topic = Topic.find(params[:topic_id])
 
       if @topic.profiles.empty?
+        @topic = Topic.find(:topic_id)
         agent = ScraperAgent.new()
         agent.login
         profiles = agent.topic_profiles(@topic.id)
         profiles.each do |user|
         logger.debug user
-        @gender = Gender.find_by_name(user[:gender])
-        @topic.profiles.create!(:user_site_id => user[:userid],
+        @genders = Gender.find_by_abv(user[:gender])
+        topic.profiles.create!(:user_site_id => user[:userid],
                          :role => user[:role],
                          :age => user[:age],
                          :gender => @gender,

@@ -1,4 +1,4 @@
 class Profile < ApplicationRecord
   belongs_to :topic
-  has_one :gender
+  belongs_to :genders
 end
