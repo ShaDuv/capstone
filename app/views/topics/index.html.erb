@@ -1,4 +1,17 @@
-  <%= form_tag(topics_path, method: :post, class: "form-control mr-sm-2 searchbox") do %>
-  <%= text_field_tag :term, params[:term], class:"form-control mr-sm-2 " %>
-  <%= submit_tag 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
-  <% end %>
+<div class="intro">
+  <h1> Gender Difference Inside of Fetish Topics </h1>
+
+  <p>Search for the name of a fetish using the search icon in the upper right corner.
+    Then click on the "Get Data" to view the comparison of numbers amoung the various genders that declair an interest in that fetish. </p>
+  </div>
+
+  <div class="search">
+    <div class="icon"></div>
+    <div class="form">
+      <%= form_tag(topics_path, method: :post) do %>
+      <%= text_field_tag :term, params[:term], class:"input", id:"search-input" %>
+      <%= submit_tag 'Search', class: "search-btn", id:"search-btn" %>
+      <% end %>
+    </div>
+
+  </div>

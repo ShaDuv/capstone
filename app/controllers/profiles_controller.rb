@@ -1,31 +1,36 @@
 class ProfilesController < ApplicationController
-    def index
-      @topic = Topic.find(params[:topic_id])
-      filter = params[:filter]
-      @profiles = @topic.profiles.where(interest_filter(filter)).count
-    end
+  def index
+    @gender = Gender.all
+    @topic = Topic.find(params[:topic_id])
+    filter = params[:filter]
+    @profiles = @topic.profiles.where(interest_filter(filter)).count
+  end
 
-    def new
-      @topic = Topic.find(params[:topic_id])
-
-      if @topic.profiles.empty?
-        agent = ScraperAgent.new()
-        agent.login
-        profiles = agent.topic_profiles(@topic.id)
-        profiles.each do |user|
-        logger.debug user
-        @topic.profiles.create!(:user_site_id => user[:userid],
-                         :role => user[:role],
-                         :age => user[:age],
-                         :gender => user[:sex],
-                         :minor_location => user[:minor_location],
-                         :major_location => user[:major_location],
-                         :action => user[:action]
-          )
+  def new
+    topic = Topic.find(params[:topic_id])
+    if topic.profiles.empty?
+      agent = ScraperAgent.new()
+      agent.login
+      profiles = agent.topic_profiles(topic.id)
+      profiles.each do |user|
+        gender = Gender.find_by_abv(user[:gender])
+        profile = topic.profiles.new(:user_site_id => user[:userid],
+          :role => user[:role],
+          :age => user[:age],
+          :minor_location => user[:minor_location],
+          :major_location => user[:major_location],
+          :action => user[:action]
+        )
+        profile.gender = gender
+        begin
+          profile.save!
+        rescue StandardError => e
+          logger.error("Gender: #{gender}\n Error: #{e} ")
         end
       end
-      redirect_to :action => 'index', topic_id: @topic.id
     end
+    redirect_to :action => 'index', topic_id: topic.id
+  end
   def search
     # this shouold be somewhere else but it[s okay for now]
     # agent = Agent.new
@@ -37,6 +42,9 @@ class ProfilesController < ApplicationController
     # json_response profiles
   end
   private
+  def group_by_gender
+  end
+
   def interest_filter(filter)
     case filter
     when "Receiving"
