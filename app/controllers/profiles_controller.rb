@@ -32,14 +32,6 @@ class ProfilesController < ApplicationController
     redirect_to :action => 'index', topic_id: topic.id
   end
   def search
-    # this shouold be somewhere else but it[s okay for now]
-    # agent = Agent.new
-    # agent.login
-    # # save this id and term to a model for the topics
-    #
-    # # get all the profiles for a topic
-    # profiles = agent.topic_profiles(id[:id])
-    # json_response profiles
   end
   private
   def group_by_gender
