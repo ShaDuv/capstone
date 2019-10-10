@@ -12,7 +12,12 @@ class ProfilesController < ApplicationController
       agent = ScraperAgent.new()
       agent.login
       profiles = agent.topic_profiles(topic.id)
-      profiles.each do |user|
+      if profiles[:maxpage] > 0
+        topic.maxpage = profiles[:maxpage]
+        topic.save!
+      end
+        profiles = profiles[:results]
+        profiles.each do |user|
         gender = Gender.find_by_abv(user[:gender])
         profile = topic.profiles.new(:user_site_id => user[:user_site_id],
           :role => user[:role],
@@ -31,8 +36,10 @@ class ProfilesController < ApplicationController
     end
     redirect_to :action => 'index', topic_id: topic.id
   end
+
   def search
   end
+
   private
   def group_by_gender
   end

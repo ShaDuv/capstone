@@ -3,7 +3,7 @@
 <%= column_chart @topic.genders.group(:name).count%>
 </div>
 
-<p><%= link_to "Receiving", topic_profiles_path(@topic, :filter => 'Receiving') %></p>
+<p><%= link_to "Home", topic_profiles_path(@topic, :filter => 'Receiving') %></p>
 <p><%= link_to "Interested", topic_profiles_path(@topic, :filter => 'Interested') %></p>
 <p><%= link_to "Everything", topic_profiles_path(@topic) %></p>
 <%= @profiles %>
